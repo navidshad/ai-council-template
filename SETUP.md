@@ -81,6 +81,9 @@ Round 5 — Setup choices
   (keep or drop that rule in AGENTS.md)
 - Do you want a 5th domain lens beyond the four core ones?
   If yes: name the domain and one line on what it cares about.
+- Do you want the docs mirrored into ClickUp? If no, delete `scripts/` and
+  `.github/workflows/sync-clickup-docs.yml`. If yes, point them at
+  `scripts/README-clickup-sync.md` (they add the token and ids themselves).
 
 After I answer, show me a short summary of what you captured. When I approve,
 fill in the files (see the fill-in map in SETUP.md), run the finalize steps,
@@ -101,6 +104,7 @@ commit with "Setup: initialize council for <PRODUCT_NAME>", and tell me what cha
 | **Design system · visual style · UX gaps** | `agents/ux-designer.md` Context block **and** mirror. |
 | **House-style choice** | `AGENTS.md` → "Writing style". Keep the plain-English default, or replace it with the user's chosen voice. |
 | **Separate code repos?** | `AGENTS.md` → "Code repos are read-only". Keep it if yes; delete the section if no. |
+| **ClickUp sync?** | If no, delete `scripts/` and `.github/workflows/sync-clickup-docs.yml`. If yes, leave them; the user follows `scripts/README-clickup-sync.md`. Never ask the user to paste a token into chat. |
 | **5th domain lens?** | If yes, see "Add a domain lens" below. If no, leave the four core lenses. |
 
 > When you fill a persona Context block, **delete the `> Fill this in...` note** above it and replace the `<...>` lines with real content. Keep these blocks short — the deep detail lives in `docs/`.

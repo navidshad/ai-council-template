@@ -17,13 +17,14 @@ Decision records (outside this folder):
 
 ## Quick links
 
-- **Product Requirements**: `product/prd.md`
-- **Roadmap**: `product/roadmap.md`
-- **PR/FAQs**: `../decisions/pr-faq/README.md`
-- **Technical Architecture**: `tech/architecture.md`
-- **ADRs**: `../decisions/adr/README.md`
-- **Metrics Framework**: `metrics/framework.md`
-- **Brand**: `marketing/brand.md`
+- **Product Requirements**: [prd.md](product/prd.md)
+- **Roadmap**: [roadmap.md](product/roadmap.md)
+- **PR/FAQs**: [pr-faq](../decisions/pr-faq/README.md)
+- **Technical Architecture**: [architecture.md](tech/architecture.md)
+- **ADRs**: [adr](../decisions/adr/README.md)
+- **Council decisions**: [council](../decisions/council/README.md)
+- **Metrics Framework**: [framework.md](metrics/framework.md)
+- **Brand**: [brand.md](marketing/brand.md)
 
 ## How decisions get made here
 

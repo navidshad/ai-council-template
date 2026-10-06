@@ -68,6 +68,7 @@ Every doc also adds one line to the Decision Log in `docs/README.md`.
 - `decisions/` — saved decisions (`pr-faq/`, `adr/`, `council/`)
 - `docs/` — the current product docs (product, tech, marketing, metrics) + the Decision Log
 - `templates/` — blank PR/FAQ and ADR forms
+- `scripts/` and `.github/workflows/` — optional sync of `docs/` and `decisions/` to a ClickUp Doc
 - `.council-temp/` — scratch space for council sessions (gitignored)
 
 ## Make it yours
@@ -87,6 +88,10 @@ Optional, when you are ready:
 - Rename the repo and update the title at the top of this file.
 - Add a fifth domain lens (see `AGENTS.md` → "Adding a domain lens").
 - Add a strict task convention if your team wants one (see `AGENTS.md` → "Turning decisions into work").
+
+## Optional: show your docs in ClickUp
+
+If your team lives in ClickUp, a GitHub Action can mirror `docs/` and `decisions/` into one ClickUp Doc every time you push to `main`. Each page shows who changed it last, and each maintainer can use their own ClickUp token. It is **off by default**: nothing runs until you add the `CLICKUP_WORKSPACE_ID` variable. Setup steps are in `scripts/README-clickup-sync.md`. Don't use ClickUp? Delete `scripts/` and `.github/workflows/sync-clickup-docs.yml`.
 
 ## Quick start
 
