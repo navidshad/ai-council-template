@@ -1,0 +1,100 @@
+name: Sync docs to ClickUp
+
+# Push to main -> reflect docs/ and decisions/ into a ClickUp Doc.
+#
+# OPTIONAL. This does nothing until you add the repo variable CLICKUP_WORKSPACE_ID
+# (Settings -> Secrets and variables -> Actions). Setup steps: scripts/README-clickup-sync.md
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - "docs/**"
+      - "decisions/**"
+      - "scripts/sync_clickup_docs.py"
+      - ".github/workflows/sync-clickup-docs.yml"
+  workflow_dispatch: {}  # allow running it by hand from the Actions tab
+
+# Never let two syncs run at the same time.
+concurrency:
+  group: clickup-docs-sync
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pull-requests: read  # to find which PR (and author) produced this push
+
+jobs:
+  sync:
+    # Skip quietly in repos that have not set up ClickUp.
+    if: ${{ vars.CLICKUP_WORKSPACE_ID != '' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Work out whose ClickUp token to use. Order of preference:
+      #   1. the author of the PR that was merged (skipped if it is a bot)
+      #   2. the person who wrote most of that PR's commits
+      #   3. the person who wrote most of the commits in this push
+      #   4. whoever triggered the run
+      # The GitHub login becomes a secret name: "John-Doe" -> CLICKUP_TOKEN_JOHN_DOE.
+      # If that secret does not exist, the shared CLICKUP_TOKEN is used.
+      - name: Pick the ClickUp token owner
+        id: who
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          SHA: ${{ github.sha }}
+          BEFORE: ${{ github.event.before }}
+          ACTOR: ${{ github.actor }}
+        run: |
+          set -uo pipefail
+          api() { gh api "$@" 2>/dev/null || true; }
+          # Most frequent non-bot login from stdin.
+          top() { grep -v '\[bot\]$' | sort | uniq -c | sort -rn | awk 'NR==1{print $2}'; }
+
+          login=""
+          pr=$(api "repos/$REPO/commits/$SHA/pulls" --jq '.[0].number')
+          if [ -n "$pr" ]; then
+            login=$(api "repos/$REPO/pulls/$pr" --jq 'select(.user.type != "Bot") | .user.login')
+            [ -z "$login" ] && login=$(api "repos/$REPO/pulls/$pr/commits" --paginate --jq '.[].author.login // empty' | top)
+          fi
+          if [ -z "$login" ] && [ -n "$BEFORE" ] && [ "${BEFORE#0000000}" = "$BEFORE" ]; then
+            login=$(api "repos/$REPO/compare/$BEFORE...$SHA" --jq '.commits[].author.login // empty' | top)
+          fi
+          [ -z "$login" ] && login="$ACTOR"
+
+          key=$(printf '%s' "$login" | tr '[:lower:]' '[:upper:]' | tr -c 'A-Z0-9' '_')
+          echo "Token owner: $login (secret CLICKUP_TOKEN_$key, falls back to CLICKUP_TOKEN)"
+          echo "key=$key" >> "$GITHUB_OUTPUT"
+
+      - name: Sync docs to ClickUp
+        env:
+          # Secret — the ClickUp personal API token (starts with pk_).
+          # Per-person secret first (CLICKUP_TOKEN_<LOGIN>), shared one as fallback.
+          CLICKUP_TOKEN: ${{ secrets[format('CLICKUP_TOKEN_{0}', steps.who.outputs.key)] || secrets.CLICKUP_TOKEN }}
+
+          # Variable — your ClickUp Workspace (team) id. It's the number in the app
+          # URL: app.clickup.com/9008123456/... -> 9008123456
+          CLICKUP_WORKSPACE_ID: ${{ vars.CLICKUP_WORKSPACE_ID }}
+
+          # Variable (recommended) — the id of the exact Doc to update every run.
+          # A "Doc" is one ClickUp document that holds many pages. Open the Doc in
+          # ClickUp; its id is the part of the URL after /dc/:
+          # app.clickup.com/9008123456/v/dc/86a1x2yz-9 -> 86a1x2yz-9
+          CLICKUP_DOC_ID: ${{ vars.CLICKUP_DOC_ID }}
+
+          # Variable (optional) — used ONLY when CLICKUP_DOC_ID is empty. It's just
+          # the Doc's title: the workflow looks for a Doc with this name and, if it
+          # finds none, creates one. Defaults to "Product Documentation" when unset.
+          CLICKUP_DOC_NAME: ${{ vars.CLICKUP_DOC_NAME }}
+
+          # Used to look up the last people who changed each file (GitHub login)
+          # for the short "Last changed by" line on every page.
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 scripts/sync_clickup_docs.py
