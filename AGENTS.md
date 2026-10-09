@@ -308,17 +308,19 @@ ADRs are committed to git. They're never edited after acceptance — to change a
 Use this when someone asks for a marketing piece: a launch or product film, a short clip for social, a video cover, store or launch-gallery images, a slide deck. The full routine lives in **`STUDIO.md`** — this section is the pointer.
 
 **Depth.**
-- Most pieces need no lens: `docs/marketing/brand.md` and the studio's design system already hold the rules.
+- Most pieces need no lens: `docs/marketing/brand.md`, the studio foundation and the chosen kit already hold the rules.
 - Ask the **Business Strategist** lens when the piece makes a new public claim, aims at a new audience, or touches price.
-- Ask the **UX Designer** lens when a new visual style is proposed.
+- Ask the **UX Designer** lens when a new design kit is proposed.
 - A change to the brand itself (the mark, the palette, the voice, the claims in `brand.md`) is a council call.
 
 **In short.**
 
-1. **Set up on first use.** The template ships no studio. The first time a piece is asked for, create `studio/` from `STUDIO.md` §2 — only the parts the piece needs. Later pieces start from the last one.
-2. **Brief → story → key frames → silent cut → sound → master**, with the founder approving the brief, the story, the key frames and the review cut (`STUDIO.md` §3.3).
-3. **Publish private.** Only the founder makes an upload public. Every upload gets a row in `studio/videos.md`.
-4. **Commit the source** on a branch with a pull request, prefix `Studio:`. Never commit a video.
+1. **Three layers: foundation → design kits → design cases.** The foundation is what every piece shares (mark, brand tokens, honesty rules, formats, render tools). A **design kit** is one complete look with its reusable parts; a studio can hold several. A **design case** is one piece (a film, a still set, a cover, a deck) made with one kit.
+2. **Set up on first use.** The template ships no studio. The first time a piece is asked for, create `studio/` from `STUDIO.md` §2, then the foundation and a kit, and only then the case.
+3. **Kit before case.** The founder approves a new kit's kit sheet before any case uses it. A case uses its kit's parts and never copies them; a missing part is added to the kit.
+4. **Case steps: brief → story → key frames → silent cut → sound → master**, with the founder approving the brief, the story, the key frames and the review cut (`STUDIO.md` §6.3).
+5. **Publish private.** Only the founder makes an upload public. Every upload gets a row in `studio/videos.md`.
+6. **Commit the source** on a branch with a pull request, prefix `Studio:`. Never commit a video.
 
 Studio pieces need no Decision Log entry unless they carry out a decision. Their log is `studio/videos.md`.
 
@@ -329,7 +331,7 @@ Studio pieces need no Decision Log entry unless they carry out a decision. Their
 - **Roadmap, PRD, architecture, brand** — never edit these without a council deliberation. They are the strategic spine.
 - **Metrics framework, feature specs, marketing tactics** — single-lens edits are fine if the user is clear, but flag if a strategic shift is implied.
 - **User-facing docs (`docs/user-docs/`), getting-started, terms** — treat as legal/customer-facing; edit only with explicit user instruction.
-- **The studio design system (`studio/design-system/`)** — refining a style or adding one is a single-lens edit with the founder's OK. A change that alters the brand (the mark, the palette, the voice, the honesty rules) follows `brand.md` and goes through the council.
+- **The studio foundation and design kits (`studio/foundation/`, `studio/kits/`)** — refining a kit or adding one is a single-lens edit with the founder's OK; re-check the key frames of the cases that use a kit before changing it. A change to the foundation that alters the brand (the mark, the palette, the voice, the honesty rules) follows `brand.md` and goes through the council.
 
 Always preserve the existing voice and structure of the doc you're editing. The living docs are versioned in git — make commits self-contained and message them like decisions, not edits (e.g., `Council: prioritize onboarding redesign ahead of referrals`, `PR/FAQ: approve saved-search alerts`, `ADR-007: adopt Postgres over DynamoDB`).
 
@@ -365,6 +367,7 @@ When a PR/FAQ, ADR, or council decision turns into engineering work, the work go
 - **In-chat revision markers on decision docs.** When iterating on a PR/FAQ, ADR, or council synthesis within a single chat, do NOT annotate with "Rev 2", "(after critic pass)", "what was addressed", or any other changelog-style markers inside the doc. Edit the body in place until it reads as a single stable version. Revisions live in git — the commit message body carries "what changed", that is git's job, not the doc's. The Status field stays a single value, no parenthetical version note.
 - **Synthesis as transcript.** The council synthesis is a verdict doc, not a record of the deliberation. Do NOT include a Perspectives Summary, an Areas of Agreement list, a Points of Contention section when there is no contention, or any section that just restates the Decision in different words. The per-agent files are deleted with the session — the permanent file must stand alone for a reader who has never seen them.
 - **Process-citations inside decision docs.** Inline parentheticals like `(deduplicated)` or `(no revision markers)` are notes-to-self, not part of the decision. The rules they cite already live in this file; re-citing them inside the synthesis is noise for the future reader.
+- **A case that copies its kit.** Cases use the kit's parts in place. A part a case needs goes into the kit, so the next case gets it too.
 - **Committing a video or render output.** The studio keeps source only; a video is a re-render or a link in `studio/videos.md`.
 - **Building a published asset in a scratch folder.** A cover, thumbnail or store image whose source sits in a temp folder is lost when the folder is cleared. Its source goes in `studio/`.
 - **Publishing a marketing piece without the founder.** Uploads stay private until the founder makes them public.

@@ -45,7 +45,7 @@ Every doc also adds one line to the Decision Log in `docs/README.md`.
 
 ## Marketing pieces (the studio)
 
-The council can also make your marketing films, launch images, video covers and slides. Ask for one, and an agent follows `STUDIO.md`: it agrees a brief with you, writes the story, shows you key frames, then builds the picture and the sound as code in `studio/`. The template ships no studio files; they are set up the first time you ask. Videos are never committed — each one re-renders from its source, and every published video is listed in `studio/videos.md`. Uploads stay private until you publish them.
+The council can also make your marketing films, launch images, video covers and slides. Ask for one, and an agent follows `STUDIO.md`. The studio has three layers: a shared **foundation** (your mark, colours, type and honesty rules), one or more **design kits** (each a complete look with reusable parts), and **design cases** (each piece, made with one kit). For a piece, the agent picks or builds a kit, agrees a brief with you, writes the story, shows you key frames, then builds the picture and the sound as code. The template ships no studio files; they are set up the first time you ask. Videos are never committed — each one re-renders from its source, and every published video is listed in `studio/videos.md`. Uploads stay private until you publish them.
 
 ## Examples
 

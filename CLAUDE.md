@@ -23,8 +23,8 @@ If the repo still has `<...>` placeholders (e.g. `<PRODUCT_NAME>`), it is a fres
 
 ## Studio work in Claude Code (Workflow 4)
 
-- **Read a film's code in parallel.** To extract its motion cues, spawn a few `general-purpose` Task subagents in one message, each
-  covering a group of scenes, and have each write `audio/cues/<scene>.json`.
+- **Read a film's code in parallel.** To extract a case's motion cues, spawn a few `general-purpose` Task subagents in one message,
+  each covering a group of scenes, and have each write `cases/<case>/audio/cues/<scene>.json`.
 - **Signed-in web tools run in the founder's own Chrome** (Claude in Chrome), in the profile signed in to the right account: the
   text-to-speech tool, the video platform, the store dashboard. The built-in browser is not signed in.
 - **Find the right Chrome profile before uploading.** A company channel often lives in a different profile from the founder's
