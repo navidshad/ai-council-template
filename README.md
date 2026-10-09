@@ -43,6 +43,10 @@ How much you think (step 2) and which doc you write (step 3) are two separate ch
 
 Every doc also adds one line to the Decision Log in `docs/README.md`.
 
+## Marketing pieces (the studio)
+
+The council can also make your marketing films, launch images, video covers and slides. Ask for one, and an agent follows `STUDIO.md`: it agrees a brief with you, writes the story, shows you key frames, then builds the picture and the sound as code in `studio/`. The template ships no studio files; they are set up the first time you ask. Videos are never committed — each one re-renders from its source, and every published video is listed in `studio/videos.md`. Uploads stay private until you publish them.
+
 ## Examples
 
 - **"Fix a typo on the pricing page."**
@@ -61,6 +65,7 @@ Every doc also adds one line to the Decision Log in `docs/README.md`.
 
 - `AGENTS.md` — the full rule book (read this first)
 - `SETUP.md` — the one-time setup routine (Workflow 0): an agent fills the template in for your product
+- `STUDIO.md` — how agents make marketing films, stills and slides (Workflow 4). The `studio/` folder is created the first time a piece is asked for
 - `CLAUDE.md` — how to run the workflows in Claude Code
 - `GEMINI.md` — how to run them in Gemini CLI and Antigravity
 - `agents/` — the four council members (canonical persona files)
