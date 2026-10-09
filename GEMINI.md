@@ -1,6 +1,6 @@
 # GEMINI.md — Gemini CLI & Antigravity pointer
 
-**Read `AGENTS.md` in full before doing anything in this repo.** It is the single source of truth for the decision-making workflows (triage → depth → output; the council, PR/FAQ, and ADR procedures; records and history; the writing style; and the anti-patterns). Both Gemini CLI and Antigravity read this file. `AGENTS.md` holds the shared rules; this file adds **only** how to spawn agents in the two Gemini-family tools. It adds no new rules.
+**Read `AGENTS.md` in full before doing anything in this repo.** It is the single source of truth for the decision-making workflows (triage → depth → output; the council, PR/FAQ, ADR and studio procedures; records and history; the writing style; and the anti-patterns). Both Gemini CLI and Antigravity read this file. `AGENTS.md` holds the shared rules; this file adds **only** how to spawn agents in the two Gemini-family tools. It adds no new rules.
 
 > Precedence note (Antigravity): when a rule here conflicts with `AGENTS.md`, this file wins. Nothing here is meant to conflict — these are spawning notes, not rule changes.
 
@@ -19,6 +19,8 @@ The council's whole value is **independent** lenses, then **one** synthesis by t
 - This is not just style — in Gemini CLI it is enforced: **a subagent cannot call or read another subagent.** So always keep synthesis in the main agent.
 
 Track multi-step workflows with the tool's todo / plan / task list.
+
+**Studio work (Workflow 4)** is a main-agent job: building scenes and sound is ordinary file work, not a council. The full routine is in `STUDIO.md`.
 
 ---
 

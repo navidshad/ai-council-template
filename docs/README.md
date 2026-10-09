@@ -15,6 +15,8 @@ Decision records (outside this folder):
 - **`../decisions/adr/`** — Architecture Decision Records — *why* technical choices were made
 - **`../decisions/council/`** — council syntheses for strategic, cross-functional calls
 
+Marketing pieces (films, stills, slides) live in `../studio/` once the first one is made. See `../STUDIO.md`.
+
 ## Quick links
 
 - **Product Requirements**: [prd.md](product/prd.md)

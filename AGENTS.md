@@ -14,7 +14,7 @@ If a per-tool file and this file disagree on *workflow*, this file wins. The per
 
 ## What this repo is
 
-This repo is the **living product documentation** for `<PRODUCT_NAME>` — `<ONE_LINE_PITCH>`. The repo is not code. It is the source of truth for product strategy, technical architecture, marketing, metrics, and user-facing docs.
+This repo is the **living product documentation** for `<PRODUCT_NAME>` — `<ONE_LINE_PITCH>`. The repo holds no product code. It is the source of truth for product strategy, technical architecture, marketing, metrics, and user-facing docs. The one exception is `studio/`, once it exists: the source of the marketing films, stills and slides. Agents build marketing pieces there (Workflow 4).
 
 Every request flows through up to three stages — **triage** (is this trivial or a real decision?), then **depth** (how hard do we think?), then **output** (which record do we write?). The job of this file is to route the request through that flow and pick the cheapest path that does the job.
 
@@ -32,6 +32,8 @@ When an agent finds a code gap or bug, the output is:
 2. a **doc update** in this repo if a living doc is stale.
 
 Engineering changes are made by the team — not by agents. This applies to every tool (Claude Code, Gemini CLI, Antigravity, Cursor).
+
+`studio/` in **this** repo is not a code repo in this sense. It is marketing source, and agents may edit it, render from it and commit to it, through a branch and a pull request (Workflow 4).
 
 > Delete this section if your repo has no separate code repos, or loosen it to fit your setup.
 
@@ -86,6 +88,7 @@ Pick the record shape that fits the question. The shape is independent of the de
 | Should we **build** this feature? | **PR/FAQ** | `decisions/pr-faq/` | Workflow 2 |
 | Which **technical option** do we pick? | **ADR** | `decisions/adr/` | Workflow 3 |
 | What is the **strategic, cross-functional call**? | **Council synthesis** | `decisions/council/` | Workflow 1 |
+| Make a **marketing video**, still, cover or slide deck | **Studio piece**: source in `studio/`, a row in `studio/videos.md` | `studio/` | Workflow 4 (`STUDIO.md`) |
 | Trivial (typo, lookup, file move) | direct edit / answer | wherever it belongs | — |
 
 Each procedure below (Workflows 1–3) is the common pairing of a depth with an output: the council procedure pairs many lenses with a synthesis; the PR/FAQ procedure pairs one critic lens with a feature doc; the ADR procedure pairs one architect lens with a technical doc.
@@ -300,11 +303,35 @@ ADRs are committed to git. They're never edited after acceptance — to change a
 
 ---
 
+## Workflow 4 — Studio (marketing films, stills and slides)
+
+Use this when someone asks for a marketing piece: a launch or product film, a short clip for social, a video cover, store or launch-gallery images, a slide deck. The full routine lives in **`STUDIO.md`** — this section is the pointer.
+
+**Depth.**
+- Most pieces need no lens: `docs/marketing/brand.md`, the studio foundation and the chosen kit already hold the rules.
+- Ask the **Business Strategist** lens when the piece makes a new public claim, aims at a new audience, or touches price.
+- Ask the **UX Designer** lens when a new design kit is proposed.
+- A change to the brand itself (the mark, the palette, the voice, the claims in `brand.md`) is a council call.
+
+**In short.**
+
+1. **Three layers: foundation → design kits → design cases.** The foundation is what every piece shares (mark, brand tokens, honesty rules, formats, render tools). A **design kit** is one complete look with its reusable parts; a studio can hold several. A **design case** is one piece (a film, a still set, a cover, a deck) made with one kit.
+2. **Set up on first use.** The template ships no studio. The first time a piece is asked for, create `studio/` from `STUDIO.md` §2, then the foundation and a kit, and only then the case.
+3. **Kit before case.** The founder approves a new kit's kit sheet before any case uses it. A case uses its kit's parts and never copies them; a missing part is added to the kit.
+4. **Case steps: brief → story → key frames → silent cut → sound → master**, with the founder approving the brief, the story, the key frames and the review cut (`STUDIO.md` §6.3).
+5. **Publish private.** Only the founder makes an upload public. Every upload gets a row in `studio/videos.md`.
+6. **Commit the source** on a branch with a pull request, prefix `Studio:`. Never commit a video.
+
+Studio pieces need no Decision Log entry unless they carry out a decision. Their log is `studio/videos.md`.
+
+---
+
 ## Editing rules for living docs
 
 - **Roadmap, PRD, architecture, brand** — never edit these without a council deliberation. They are the strategic spine.
 - **Metrics framework, feature specs, marketing tactics** — single-lens edits are fine if the user is clear, but flag if a strategic shift is implied.
 - **User-facing docs (`docs/user-docs/`), getting-started, terms** — treat as legal/customer-facing; edit only with explicit user instruction.
+- **The studio foundation and design kits (`studio/foundation/`, `studio/kits/`)** — refining a kit or adding one is a single-lens edit with the founder's OK; re-check the key frames of the cases that use a kit before changing it. A change to the foundation that alters the brand (the mark, the palette, the voice, the honesty rules) follows `brand.md` and goes through the council.
 
 Always preserve the existing voice and structure of the doc you're editing. The living docs are versioned in git — make commits self-contained and message them like decisions, not edits (e.g., `Council: prioritize onboarding redesign ahead of referrals`, `PR/FAQ: approve saved-search alerts`, `ADR-007: adopt Postgres over DynamoDB`).
 
@@ -340,4 +367,9 @@ When a PR/FAQ, ADR, or council decision turns into engineering work, the work go
 - **In-chat revision markers on decision docs.** When iterating on a PR/FAQ, ADR, or council synthesis within a single chat, do NOT annotate with "Rev 2", "(after critic pass)", "what was addressed", or any other changelog-style markers inside the doc. Edit the body in place until it reads as a single stable version. Revisions live in git — the commit message body carries "what changed", that is git's job, not the doc's. The Status field stays a single value, no parenthetical version note.
 - **Synthesis as transcript.** The council synthesis is a verdict doc, not a record of the deliberation. Do NOT include a Perspectives Summary, an Areas of Agreement list, a Points of Contention section when there is no contention, or any section that just restates the Decision in different words. The per-agent files are deleted with the session — the permanent file must stand alone for a reader who has never seen them.
 - **Process-citations inside decision docs.** Inline parentheticals like `(deduplicated)` or `(no revision markers)` are notes-to-self, not part of the decision. The rules they cite already live in this file; re-citing them inside the synthesis is noise for the future reader.
+- **A case that copies its kit.** Cases use the kit's parts in place. A part a case needs goes into the kit, so the next case gets it too.
+- **Committing a video or render output.** The studio keeps source only; a video is a re-render or a link in `studio/videos.md`.
+- **Building a published asset in a scratch folder.** A cover, thumbnail or store image whose source sits in a temp folder is lost when the folder is cleared. Its source goes in `studio/`.
+- **Publishing a marketing piece without the founder.** Uploads stay private until the founder makes them public.
+- **A film or slide that claims more than the product does.** Check `brand.md` and the honesty rules in `STUDIO.md` §4 before anything is rendered.
 - **Justifying skipped lenses inside the permanent file.** The `**Lenses**` field is a single line listing which lenses ran. Why a lens was skipped is a commit-body concern, not a section of the synthesis.
