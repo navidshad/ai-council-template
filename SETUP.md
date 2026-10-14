@@ -63,6 +63,8 @@ Round 2 — Tech
 - Main systems or services
 - Key integrations (AI, payments, analytics, auth)
 - Key constraints (latency, scale, privacy, cost)
+- Code repos (names / paths) and which agent tool writes code there (Claude Code, Codex, a person)
+- Connectors your agent can already read (analytics, payments, tracker, support inbox)
 
 Round 3 — Business
 - How it makes money (free / paid model)
@@ -104,6 +106,8 @@ commit with "Setup: initialize council for <PRODUCT_NAME>", and tell me what cha
 | **Design system · visual style · UX gaps** | `agents/ux-designer.md` Context block **and** mirror. |
 | **House-style choice** | `AGENTS.md` → "Writing style". Keep the plain-English default, or replace it with the user's chosen voice. |
 | **Separate code repos?** | `AGENTS.md` → "Code repos are read-only". Keep it if yes; delete the section if no. |
+| **Code repos + coding tool** | `docs/tech/architecture.md` (a "Code repos" list with paths). The hand-off steps in `AGENTS.md` → "Hand-off to a code session" use it. |
+| **Connectors** | `docs/metrics/framework.md` → "Data sources". Never ask for or store a token. |
 | **ClickUp sync?** | If no, delete `scripts/` and `.github/workflows/sync-clickup-docs.yml`. If yes, leave them; the user follows `scripts/README-clickup-sync.md`. Never ask the user to paste a token into chat. |
 | **5th domain lens?** | If yes, see "Add a domain lens" below. If no, leave the four core lenses. |
 

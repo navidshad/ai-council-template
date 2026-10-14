@@ -1,20 +1,58 @@
-# AI Council Template
+<p align="center"><img src=".github/assets/hero.png" alt="AI Council: your product's AI council. It decides, writes it down, and hands it to code." width="100%"></p>
 
-A reusable framework for running an **AI product council** over a living-docs repo. A small team of AI agents helps you make decisions and write them down, so the *why* behind every choice is saved and easy to find.
+# AI Council
 
-This is a **template**. Clone it, fill in a few placeholders, and start your own product-docs repo. Nothing here is tied to one product.
+**An AI product team that lives in a git repo.** Four AI lenses (Product, UX, Tech, Business) debate every real product question, write the decision down, check your live numbers, hand the work to a coding session in your product repo, and even make your launch film.
+
+It is a **template**, not a service. Click **Use this template**, tell your agent "set up the council", and it interviews you and fills everything in. No server, no SaaS, no lock-in: plain markdown and the agent you already use.
+
+[![Use this template](https://img.shields.io/badge/Use%20this%20template-2ea44f?style=for-the-badge)](https://github.com/navidshad/ai-council-template/generate)
+![MIT](https://img.shields.io/badge/license-MIT-f5a524?style=for-the-badge)
+![Works with](https://img.shields.io/badge/works%20with-Claude%20Code%20%C2%B7%20Codex%20%C2%B7%20Gemini%20CLI%20%C2%B7%20Cursor-8b7cf6?style=for-the-badge)
+
+## Why
+
+If you build alone or in a small team, you play every role: PM, designer, architect, marketer. The hard part is not the code any more. It is making good calls, fast, and remembering *why* you made them.
+
+The council gives you a second (and third, and fourth) opinion on every real decision, keeps the reasoning in git, and turns the decision into work, all through one conversation.
+
+## One loop, from idea to merged PR
+
+<p align="center"><img src=".github/assets/loop.png" alt="You ask, the lenses debate, it is written down, it is handed to code, the docs stay true." width="100%"></p>
+
+1. **You ask** in plain English. "Should we add a free plan?" "Users drop off at step 2. Why?"
+2. **The lenses debate.** Each one thinks alone, in parallel, grounded in your docs, your code and (with connectors) your live data. The main agent writes one verdict.
+3. **It is written down** as a PR/FAQ, an ADR or a council decision, with a line in the Decision Log.
+4. **It is handed to code.** You approve the tasks, and the council starts a Claude Code or Codex session in your product repo with a brief. That session opens the PR. A person merges.
+5. **The docs stay true.** The roadmap and PRD update, and a `Ship` line links the decision to the PR.
+
+Real runs, from the products this template came out of:
+
+- **Subturtle**'s council turned 6 gaps from a live test into 6 tasks, then one code session. The fix was merged to production 33 minutes later.
+- **Kilogent**'s PR/FAQ "browser in three steps" started two code sessions (backend and browser extension). Both PRs merged the same day.
+
+## Quick start
+
+1. Click **Use this template** (or fork / clone), and open the new repo in Claude Code, Codex, Gemini CLI or Cursor.
+2. **Run setup.** Ask your agent to "set up the council" (or just start a council request — it will offer). It interviews you, fills in your product facts and the `docs/` skeleton, and commits. See `SETUP.md`.
+3. Open `AGENTS.md` and try a request: ask the council a small strategic question, or draft a PR/FAQ from `templates/pr-faq-template.md`.
+4. Optional: connect your analytics, payments and tracker to your agent, and list your code repos during setup.
+5. Every decision gets a permanent file in `decisions/` and one line in the Decision Log in `docs/README.md`.
 
 ## Works with
 
 The same workflow files drive more than one agent tool, so the council runs the same way whichever you use:
 
 - **Claude Code** — the personas spawn as parallel `Task` subagents from `agents/*.md`. See `CLAUDE.md`.
+- **Codex** — reads `AGENTS.md` natively; run each lens as its own isolated task. See `AGENTS.md` → "How to spawn personas".
 - **Gemini CLI** — the personas are native subagents in `.gemini/agents/*.md` (call them, or force one with `@product-manager`). See `GEMINI.md`.
 - **Antigravity** and **Cursor** — read `AGENTS.md` + the persona files directly; spawn each lens as its own agent. See `GEMINI.md`.
 
 `AGENTS.md` is the shared source of truth for every tool. The per-tool files (`CLAUDE.md`, `GEMINI.md`) only add *how to spawn agents* in that tool — they add no new rules. If you change a persona, update both `agents/<role>.md` and its Gemini mirror `.gemini/agents/<role>.md` so all tools stay in sync.
 
 ## The council
+
+<p align="center"><img src=".github/assets/lenses.png" alt="Four lenses: Product Manager, UX Designer, Technical Architect, Business Strategist." width="100%"></p>
 
 The council is four AI agents. Each one looks at a question from one angle:
 
@@ -43,9 +81,30 @@ How much you think (step 2) and which doc you write (step 3) are two separate ch
 
 Every doc also adds one line to the Decision Log in `docs/README.md`.
 
+## Live data and your code
+
+- **Connectors.** If your agent has MCP connectors for analytics (Mixpanel, PostHog), payments (Stripe), your tracker (ClickUp, Linear) or your support inbox, the council queries them before it argues. Numbers go into the decision with a source and a date. Read-only by default. See `AGENTS.md` → "Connectors".
+- **Code repos.** The Technical Architect reads your product code to check claims. The council never edits that code: it writes a brief and hands it to a separate coding session. See `AGENTS.md` → "Hand-off to a code session".
+
 ## Marketing pieces (the studio)
 
+<p align="center"><img src=".github/assets/studio.png" alt="Launch films made with the studio for Kilogent, Subturtle, BytePets and Lumi Support." width="100%"></p>
+
+
 The council can also make your marketing films, launch images, video covers and slides. Ask for one, and an agent follows `STUDIO.md`. The studio has three layers: a shared **foundation** (your mark, colours, type and honesty rules), one or more **design kits** (each a complete look with reusable parts), and **design cases** (each piece, made with one kit). For a piece, the agent picks or builds a kit, agrees a brief with you, writes the story, shows you key frames, then builds the picture and the sound as code. The template ships no studio files; they are set up the first time you ask. Videos are never committed — each one re-renders from its source, and every published video is listed in `studio/videos.md`. Uploads stay private until you publish them.
+
+## Built with it
+
+<p align="center"><img src=".github/assets/built-with.png" alt="Subturtle, Kilogent, BytePets and Lumi Support, each run with a council." width="100%"></p>
+
+This template was not designed on a whiteboard. It grew out of one maker running real products with it since January 2026, then was cleaned up and opened:
+
+- **Subturtle** (learn English from what you watch). The first council. It priced a four-tier plan on Stripe-fee and AI-cost math, told two features "don't build yet", and added a fifth lens: a language-learning scientist.
+- **Kilogent** (people and AI agents as one team). Its council decided to "sell the product we have" and made the docs follow the code. The studio made three films and a 14-slide pitch deck.
+- **BytePets** (one map for every pet owner in Vilnius). A hackathon entry: nine decisions in about a day, including dropping its own first MVP. Pitch film: [watch](https://youtu.be/_fosbssDrBc).
+- **Lumi Support** (customer support for small teams). Launch film: [watch](https://youtu.be/cZOMOee6HRA).
+
+Using it for your product? Open an issue or a PR to add it here.
 
 ## Examples
 
@@ -66,7 +125,7 @@ The council can also make your marketing films, launch images, video covers and 
 - `AGENTS.md` — the full rule book (read this first)
 - `SETUP.md` — the one-time setup routine (Workflow 0): an agent fills the template in for your product
 - `STUDIO.md` — how agents make marketing films, stills and slides (Workflow 4). The `studio/` folder is created the first time a piece is asked for
-- `CLAUDE.md` — how to run the workflows in Claude Code
+- `CLAUDE.md` — how to run the workflows in Claude Code (Codex reads `AGENTS.md` directly)
 - `GEMINI.md` — how to run them in Gemini CLI and Antigravity
 - `agents/` — the four council members (canonical persona files)
 - `.gemini/agents/` — the same four as native Gemini CLI subagents
@@ -98,9 +157,6 @@ Optional, when you are ready:
 
 If your team lives in ClickUp, a GitHub Action can mirror `docs/` and `decisions/` into one ClickUp Doc every time you push to `main`. Each page shows who changed it last, and each maintainer can use their own ClickUp token. It is **off by default**: nothing runs until you add the `CLICKUP_WORKSPACE_ID` variable. Setup steps are in `scripts/README-clickup-sync.md`. Don't use ClickUp? Delete `scripts/` and `.github/workflows/sync-clickup-docs.yml`.
 
-## Quick start
+## License
 
-1. Clone the repo.
-2. **Run setup.** Ask your agent to "set up the council" (or just start a council request — it will offer). It interviews you, fills in your product facts and the `docs/` skeleton, and commits. See `SETUP.md`.
-3. Open `AGENTS.md` and try a request: ask the council a small strategic question, or draft a PR/FAQ from `templates/pr-faq-template.md`.
-4. Every decision gets a permanent file in `decisions/` and one line in the Decision Log in `docs/README.md`.
+MIT. Fork it, change it, use it for anything. See `LICENSE`.
