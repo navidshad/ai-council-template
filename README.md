@@ -96,20 +96,16 @@ Every doc also adds one line to the Decision Log in `docs/README.md`.
 
 ## Marketing pieces (the studio)
 
-<p align="center"><img src=".github/assets/studio.png" alt="Launch films made with the studio for Kilogent, Subturtle, BytePets and Lumi Support." width="100%"></p>
-
 
 The council can also make your marketing films, launch images, video covers and slides. Ask for one, and an agent follows `STUDIO.md`. The studio has three layers: a shared **foundation** (your mark, colours, type and honesty rules), one or more **design kits** (each a complete look with reusable parts), and **design cases** (each piece, made with one kit). For a piece, the agent picks or builds a kit, agrees a brief with you, writes the story, shows you key frames, then builds the picture and the sound as code. The template ships no studio files; they are set up the first time you ask. Videos are never committed — each one re-renders from its source, and every published video is listed in `studio/videos.md`. Uploads stay private until you publish them.
 
 ## Built with it
 
-<p align="center"><img src=".github/assets/built-with.png" alt="Subturtle, Kilogent, BytePets and Lumi Support, each run with a council." width="100%"></p>
-
 This template was not designed on a whiteboard. It grew out of one maker running real products with it since January 2026, then was cleaned up and opened:
 
-- **Subturtle** (learn English from what you watch). The first council. It priced a four-tier plan on Stripe-fee and AI-cost math, told two features "don't build yet", and added a fifth lens: a language-learning scientist.
-- **Kilogent** (people and AI agents as one team). Its council decided to "sell the product we have" and made the docs follow the code. The studio made three films and a 14-slide pitch deck.
-- **BytePets** (one map for every pet owner in Vilnius). A hackathon entry: nine decisions in about a day, including dropping its own first MVP. Pitch film: [watch](https://youtu.be/_fosbssDrBc).
+- **[Subturtle](https://subturtle.app)** (learn English from what you watch). The first council. It priced a four-tier plan on Stripe-fee and AI-cost math, told two features "don't build yet", and added a fifth lens: a language-learning scientist.
+- **[Kilogent](https://kilogent.com)** (people and AI agents as one team). Its council decided to "sell the product we have" and made the docs follow the code. The studio made three films and a 14-slide pitch deck.
+- **[BytePets](https://bytepets-app.web.app)** (one map for every pet owner in Vilnius). A hackathon entry: nine decisions in about a day, including dropping its own first MVP. Pitch film: [watch](https://youtu.be/_fosbssDrBc).
 - **Lumi Support** (customer support for small teams). Launch film: [watch](https://youtu.be/cZOMOee6HRA).
 
 Using it for your product? Open an issue or a PR to add it here.
