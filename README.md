@@ -26,6 +26,12 @@ The council gives you a second (and third, and fourth) opinion on every real dec
 4. **It is handed to code.** You approve the tasks, and the council starts a Claude Code or Codex session in your product repo with a brief. That session opens the PR. A person merges.
 5. **The docs stay true.** The roadmap and PRD update, and a `Ship` line links the decision to the PR.
 
+### How the council talks to your code
+
+<p align="center"><img src=".github/assets/council-to-code.png" alt="The council repo writes a brief, you approve it, and it starts Claude Code or Codex sessions in your code repos. The PRs merge and a Ship line goes into the Decision Log." width="100%"></p>
+
+The council **reads** your code repos (the Tech lens checks claims against the real code) but never edits them. When you approve a decision's tasks, it writes a brief and **starts a coding session inside each code repo**: Claude Code or Codex. Each session opens its own PR. When the PRs merge, the council adds a `Ship` line to the Decision Log, and the next question starts from there.
+
 Real runs, from the products this template came out of:
 
 - **Subturtle**'s council turned 6 gaps from a live test into 6 tasks, then one code session. The fix was merged to production 33 minutes later.
@@ -82,6 +88,8 @@ How much you think (step 2) and which doc you write (step 3) are two separate ch
 Every doc also adds one line to the Decision Log in `docs/README.md`.
 
 ## Live data and your code
+
+<p align="center"><img src=".github/assets/connectors.png" alt="Mixpanel, Stripe, PostHog, ClickUp, Linear and GitHub connected to the council." width="100%"></p>
 
 - **Connectors.** If your agent has MCP connectors for analytics (Mixpanel, PostHog), payments (Stripe), your tracker (ClickUp, Linear) or your support inbox, the council queries them before it argues. Numbers go into the decision with a source and a date. Read-only by default. See `AGENTS.md` → "Connectors".
 - **Code repos.** The Technical Architect reads your product code to check claims. The council never edits that code: it writes a brief and hands it to a separate coding session. See `AGENTS.md` → "Hand-off to a code session".
