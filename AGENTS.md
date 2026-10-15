@@ -376,7 +376,7 @@ The council never edits code itself. When a decision is approved and its tasks a
 4. **The code session owns the work.** It makes a branch and opens a pull request. A person reviews and merges. The council does not push, merge or deploy.
 5. **Close the loop.** When the PR merges, update the living docs that changed and add a `Ship` line to the Decision Log that links the decision and the PR.
 
-<!-- TODO(human): the guardrail for automatic hand-offs -->
+**No automatic hand-offs.** A code session starts only after the owner says yes in chat to that exact task list, every time. Approval for one decision never carries over to the next. If your team wants to loosen this (for example, copy fixes that ship without asking), write the exception here, by name.
 
 > This is deliberately light. If your team wants a strict task convention (fixed scope field, a description template, UX hand-off rules), add it here.
 

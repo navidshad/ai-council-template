@@ -9,12 +9,32 @@ It is a **template**, not a service. Click **Use this template**, tell your agen
 [![Use this template](https://img.shields.io/badge/Use%20this%20template-2ea44f?style=for-the-badge)](https://github.com/navidshad/ai-council-template/generate)
 ![MIT](https://img.shields.io/badge/license-MIT-f5a524?style=for-the-badge)
 ![Works with](https://img.shields.io/badge/works%20with-Claude%20Code%20%C2%B7%20Codex%20%C2%B7%20Gemini%20CLI%20%C2%B7%20Cursor-8b7cf6?style=for-the-badge)
+[![Product Hunt](https://img.shields.io/badge/Product%20Hunt-AI%20Council-da552f?style=for-the-badge&logo=producthunt&logoColor=white)](https://www.producthunt.com/products/ai-council-4)
 
 ## Why
 
 If you build alone or in a small team, you play every role: PM, designer, architect, marketer. The hard part is not the code any more. It is making good calls, fast, and remembering *why* you made them.
 
 The council gives you a second (and third, and fourth) opinion on every real decision, keeps the reasoning in git, and turns the decision into work, all through one conversation.
+
+## Watch it
+
+<a href="https://www.producthunt.com/products/ai-council-4"><img src=".github/assets/demo-poster.png" alt="Watch the 2-minute demo: one council chat branches into code sessions, and the roadmap ticks." width="100%"></a>
+
+## The blueprint: four workflows
+
+<p align="center"><img src=".github/assets/blueprint.png" alt="Any request goes to one of four workflows: Council for the big calls, PR/FAQ for features, ADR for tech choices, Studio for marketing. Each adds a line to the Decision Log." width="100%"></p>
+
+Every request is sorted first. Small things are just done. Real decisions go to one of four workflows, and each one writes a record:
+
+| Workflow | When | Record |
+|---|---|---|
+| **1 · Council** | The big calls: pricing, pivots, go-to-market | `decisions/council/` |
+| **2 · PR/FAQ** | Should we build this feature? With a critic pass | `decisions/pr-faq/` |
+| **3 · ADR** | Which technical option? Alternatives kept | `decisions/adr/` |
+| **4 · Studio** | Films, demos, motion graphics, stills, slides | `studio/` |
+
+Every record adds one line to the Decision Log, so the docs stay true.
 
 ## One loop, from idea to merged PR
 
@@ -94,10 +114,22 @@ Every doc also adds one line to the Decision Log in `docs/README.md`.
 - **Connectors.** If your agent has MCP connectors for analytics (Mixpanel, PostHog), payments (Stripe), your tracker (ClickUp, Linear) or your support inbox, the council queries them before it argues. Numbers go into the decision with a source and a date. Read-only by default. See `AGENTS.md` → "Connectors".
 - **Code repos.** The Technical Architect reads your product code to check claims. The council never edits that code: it writes a brief and hands it to a separate coding session. See `AGENTS.md` → "Hand-off to a code session".
 
-## Marketing pieces (the studio)
+## The studio (Workflow 4)
 
+<p align="center"><img src=".github/assets/studio-kit.png" alt="A design kit, one film per use case, and a prompt that re-renders one film." width="100%"></p>
 
-The council can also make your marketing films, launch images, video covers and slides. Ask for one, and an agent follows `STUDIO.md`. The studio has three layers: a shared **foundation** (your mark, colours, type and honesty rules), one or more **design kits** (each a complete look with reusable parts), and **design cases** (each piece, made with one kit). For a piece, the agent picks or builds a kit, agrees a brief with you, writes the story, shows you key frames, then builds the picture and the sound as code. The template ships no studio files; they are set up the first time you ask. Videos are never committed — each one re-renders from its source, and every published video is listed in `studio/videos.md`. Uploads stay private until you publish them.
+Set up a **design kit** once: your colours, type and reusable parts. Then every use case of your product can get its own film. Want a change? Say it in a prompt, and the film renders again.
+
+<p align="center"><img src=".github/assets/studio.png" alt="Claude Code and Codex handle motion graphics, real footage, product demos and many versions. Just say what you need." width="100%"></p>
+
+Claude Code or Codex handle all the editing:
+
+- **Motion graphics** built as code: titles, transitions, animated UI.
+- **Your real footage:** cut, colour, captions and music.
+- **Product demos:** recorded from your screen, or rebuilt from your product's design system.
+- **Many versions:** 16:9, 9:16 and 1:1, for every use case.
+
+You approve the brief, the story and the key frames. Just say what you need. The demo video above was made this way. The full routine is in `STUDIO.md`; the `studio/` folder is created the first time you ask for a piece, videos are never committed (each one re-renders from its source), and uploads stay private until you publish them.
 
 ## Built with it
 
