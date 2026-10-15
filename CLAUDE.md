@@ -2,7 +2,7 @@
 
 **Read `AGENTS.md` in full before doing anything in this repo.** It is the single source of truth for the decision-making workflows (triage → depth → output; the council, PR/FAQ, ADR and studio procedures; records and history; the writing style; and the anti-patterns). Claude Code does not auto-load `AGENTS.md` yet, so treat this line as a hard instruction: open and follow `AGENTS.md` at the start of every session.
 
-**Hard rule — code repos are read-only.** You may read this product's code repos to audit or answer questions, but you must never edit, commit, merge, or push code. Code gaps become tasks in the tracker (preview with the owner first) or doc updates. See `AGENTS.md` → "Code repos are read-only for AI agents". (Delete this rule if your repo has no separate code repos.) This repo's own `studio/` folder is not a code repo: marketing pieces are built there (`AGENTS.md` → Workflow 4, `STUDIO.md`).
+**Hard rule — code repos are read-only.** You may read this product's code repos to audit or answer questions, but you must never edit, commit, merge, or push code. Code gaps become tasks in the tracker (preview with the owner first) or doc updates. To get code written, start a **separate** Claude Code session in the code repo with a brief, after the owner approves the tasks (`AGENTS.md` → "Hand-off to a code session"). See `AGENTS.md` → "Code repos are read-only for AI agents". (Delete this rule if your repo has no separate code repos.) This repo's own `studio/` folder is not a code repo: marketing pieces are built there (`AGENTS.md` → Workflow 4, `STUDIO.md`).
 
 Everything below is **only** the Claude-Code-specific way to run what `AGENTS.md` describes. It adds no new rules.
 

@@ -51,6 +51,8 @@ Format:
 - {YYYY-MM-DD} — {Council | PR/FAQ (Status) | ADR-NNN (Status)} — {short title} — `decisions/.../<file>.md`
 ```
 
+When a decision ships, add one more line: `- {YYYY-MM-DD} — Ship — {short title} — {decision file} → {PR link}`.
+
 ---
 
 _No decisions logged yet._

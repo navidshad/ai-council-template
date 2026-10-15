@@ -2,7 +2,7 @@
 
 > **Template repo — run setup first.** Before you use the council, initialize the repo for your product. Run **Workflow 0 — Setup**: an agent interviews you (or reads a pitch / PRD you paste) and fills in the whole template — personas, docs, and the placeholders. See `SETUP.md` for the routine. (Prefer to fill it in by hand? The placeholder list is in `README.md` → "Make it yours".)
 
-This file is the **single source of truth** for how AI agents run the decision-making workflows in this repo. It is the cross-tool standard: **Claude Code**, **Gemini CLI**, **Antigravity**, and **Cursor** all read it. The thin per-tool files point back here:
+This file is the **single source of truth** for how AI agents run the decision-making workflows in this repo. It is the cross-tool standard: **Claude Code**, **Codex**, **Gemini CLI**, **Antigravity**, and **Cursor** all read it. The thin per-tool files point back here:
 
 - `CLAUDE.md` — Claude Code pointer + Claude Code spawning notes.
 - `GEMINI.md` — Gemini CLI **and** Antigravity pointer + their spawning notes.
@@ -33,9 +33,25 @@ When an agent finds a code gap or bug, the output is:
 
 Engineering changes are made by the team — not by agents. This applies to every tool (Claude Code, Gemini CLI, Antigravity, Cursor).
 
+The council *can* still get code written: it hands the approved work to a **separate coding session** that runs inside the code repo (see "Turning decisions into work" → "Hand-off to a code session"). That session is not the council. It owns the branch and the pull request, and a person reviews and merges.
+
 `studio/` in **this** repo is not a code repo in this sense. It is marketing source, and agents may edit it, render from it and commit to it, through a branch and a pull request (Workflow 4).
 
 > Delete this section if your repo has no separate code repos, or loosen it to fit your setup.
+
+---
+
+## Connectors — ground the council in live data
+
+If your agent tool has connectors (MCP servers) for your analytics, payments, tracker or support inbox, the council should **read the numbers before it argues about them**. Common ones: Mixpanel or PostHog (funnels, retention), Stripe (revenue, churn, plan mix), ClickUp, Linear or Jira (the tracker), and your support inbox.
+
+- **Read-only by default.** Lenses and the main agent may query connectors freely. Anything that writes (creating tasks, changing a price, sending a message) needs the owner's explicit OK first, every time.
+- **Numbers go in the grounding pack, with a source and a date.** For example: `Activation, last 7 days: 31% (Mixpanel funnel "Signup → First agent", 2026-10-14)`. A lens must not guess a number a connector could answer.
+- **Quote, don't paste.** Put the few figures that matter into the decision doc. Never paste raw exports, user emails or personal data into this repo.
+- **No secrets in the repo.** Connector tokens live in the agent tool's own settings, never in a committed file.
+- **Say what is missing.** If a question needs data no connector can reach, the synthesis says so in its Confidence section instead of inventing it.
+
+List the connectors this product uses in `docs/metrics/framework.md` (the "Data sources" line), so every session knows where the truth lives.
 
 ---
 
@@ -105,6 +121,7 @@ Each procedure below (Workflows 1–3) is the common pairing of a depth with an 
 
 The workflows below say "spawn a lens" or "spawn a critic." How you spawn depends on the tool. The persona content is the same everywhere; only the mechanism differs.
 
+- **Codex** — reads `AGENTS.md` natively. Run each lens as its own isolated run (a separate Codex task, or one `codex exec` call per lens) with `agents/<role>.md` verbatim plus the grounding pack, so the lenses cannot see each other. The main thread reads their files and synthesizes.
 - **Claude Code** — spawn each persona with the **Task** tool (`subagent_type: "general-purpose"`), reading `agents/<role>.md` verbatim into the prompt. Spawn in parallel: one message, several Task calls. See `CLAUDE.md`.
 - **Gemini CLI** — the personas are **native subagents** in `.gemini/agents/*.md` (names: `product-manager`, `ux-designer`, `technical-architect`, `business-strategist`). The main agent calls each as a tool, or you force one with `@product-manager`. Each runs in its **own isolated context** — independence is guaranteed. They may run one after another, not truly at the same time; that is fine, isolation gives the same independent reasoning. **A Gemini subagent cannot call another subagent.** So the **main agent** always does the synthesis — never ask a subagent to synthesize or to read another subagent. See `GEMINI.md`.
 - **Antigravity** — no native subagent files needed. Spawn each persona in the **Agent Manager** as a separate agent, pasting the persona file (`agents/<role>.md`) plus the grounding pack into the prompt. Run them as parallel agents. The main agent synthesizes. See `GEMINI.md`.
@@ -346,12 +363,29 @@ When a PR/FAQ, ADR, or council decision turns into engineering work, the work go
 - **Always preview the task list with the owner before creating any task.** Nothing lands in the tracker without explicit approval of the name, the description, and the scope.
 - **Link each task back to its decision doc** (PR/FAQ, ADR, or council file) so the reasoning is one click away.
 
+### Hand-off to a code session
+
+The council never edits code itself. When a decision is approved and its tasks are agreed, it can **start a coding session in the code repo** and hand over a brief. This is how one conversation goes all the way from "should we?" to a merged pull request.
+
+1. **Approve first.** The owner approves the task list (above). No code session starts without that OK.
+2. **Write the brief.** One brief per code repo. It holds: the goal in one sentence, the link to the decision doc, the task IDs, what "done" looks like (tests, the screen that must work), and anything the session must not touch.
+3. **Start the session in the code repo**, using what your tool offers:
+   - **Claude Code (desktop app):** start a new session in the code repo's folder with the brief as its first message. One session per repo; two sessions never edit the same files.
+   - **Claude Code (terminal):** run `claude` inside the code repo and paste the brief.
+   - **Codex:** start a Codex task (CLI or cloud) on the code repo with the brief.
+4. **The code session owns the work.** It makes a branch and opens a pull request. A person reviews and merges. The council does not push, merge or deploy.
+5. **Close the loop.** When the PR merges, update the living docs that changed and add a `Ship` line to the Decision Log that links the decision and the PR.
+
+**No automatic hand-offs.** A code session starts only after the owner says yes in chat to that exact task list, every time. Approval for one decision never carries over to the next. If your team wants to loosen this (for example, copy fixes that ship without asking), write the exception here, by name.
+
 > This is deliberately light. If your team wants a strict task convention (fixed scope field, a description template, UX hand-off rules), add it here.
 
 ---
 
 ## Anti-patterns
 
+- **A council session that edits code.** The council writes the brief; a separate session in the code repo writes the code.
+- **Arguing about numbers a connector could answer.** Query first, then deliberate.
 - **Defaulting to the council.** It's the most expensive workflow. Use PR/FAQ or ADR when they fit.
 - **Spawning every lens by default.** Two-tier is the default — pick the 2 most relevant lenses, escalate to more only when synthesis reveals a real gap.
 - **Running chosen lenses sequentially when the tool can run them together.** In Claude Code and Antigravity, spawn the tier in parallel. (In Gemini CLI, isolated subagent calls may run one after another — that is acceptable because isolation already gives independent reasoning.)
