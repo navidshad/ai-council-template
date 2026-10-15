@@ -19,7 +19,7 @@ The council gives you a second (and third, and fourth) opinion on every real dec
 
 ## Watch it
 
-<a href="https://www.producthunt.com/products/ai-council-4"><img src=".github/assets/demo-poster.png" alt="Watch the 2-minute demo: one council chat branches into code sessions, and the roadmap ticks." width="100%"></a>
+<a href="https://youtu.be/_vRYlxvbnKI"><img src=".github/assets/demo-poster.png" alt="Watch the 2-minute demo: one council chat branches into code sessions, and the roadmap ticks." width="100%"></a>
 
 ## The blueprint: four workflows
 
