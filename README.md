@@ -137,7 +137,7 @@ This template was not designed on a whiteboard. It grew out of one maker running
 
 - **[Subturtle](https://subturtle.app)** (learn English from what you watch). The first council. It priced a four-tier plan on Stripe-fee and AI-cost math, told two features "don't build yet", and added a fifth lens: a language-learning scientist.
 - **[Kilogent](https://kilogent.com)** (people and AI agents as one team). Its council decided to "sell the product we have" and made the docs follow the code. The studio made three films and a 14-slide pitch deck.
-- **[BytePets](https://bytepets-app.web.app)** (one map for every pet owner in Vilnius). A hackathon entry: nine decisions in about a day, including dropping its own first MVP. Pitch film: [watch](https://youtu.be/_fosbssDrBc).
+- **[BytePets](https://bytepets-app.web.app/demo.html)** (one map for every pet owner in Vilnius). A hackathon entry: nine decisions in about a day, including dropping its own first MVP. Pitch film: [watch](https://youtu.be/_fosbssDrBc).
 - **Lumi Support** (customer support for small teams). Launch film: [watch](https://youtu.be/cZOMOee6HRA).
 
 Using it for your product? Open an issue or a PR to add it here.
