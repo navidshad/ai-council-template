@@ -4,9 +4,9 @@
 
 **An AI product team that lives in a git repo.** Four AI lenses (Product, UX, Tech, Business) debate every real product question, write the decision down, check your live numbers, hand the work to a coding session in your product repo, and even make your launch film.
 
-It is a **template**, not a service. Click **Use this template**, tell your agent "set up the council", and it interviews you and fills everything in. No server, no SaaS, no lock-in: plain markdown and the agent you already use.
+It is a **template**, not a service. **Fork or clone** this repo, tell your agent "set up the council", and it interviews you and fills everything in. No server, no SaaS, no lock-in: plain markdown and the agent you already use.
 
-[![Use this template](https://img.shields.io/badge/Use%20this%20template-2ea44f?style=for-the-badge)](https://github.com/navidshad/ai-council-template/generate)
+[![Fork on GitHub](https://img.shields.io/badge/Fork%20on%20GitHub-2ea44f?style=for-the-badge&logo=github&logoColor=white)](https://github.com/navidshad/ai-council-template/fork)
 ![MIT](https://img.shields.io/badge/license-MIT-f5a524?style=for-the-badge)
 ![Works with](https://img.shields.io/badge/works%20with-Claude%20Code%20%C2%B7%20Codex%20%C2%B7%20Gemini%20CLI%20%C2%B7%20Cursor-8b7cf6?style=for-the-badge)
 [![Product Hunt](https://img.shields.io/badge/Product%20Hunt-AI%20Council-da552f?style=for-the-badge&logo=producthunt&logoColor=white)](https://www.producthunt.com/products/ai-council-4)
@@ -59,7 +59,7 @@ Real runs, from the products this template came out of:
 
 ## Quick start
 
-1. Click **Use this template** (or fork / clone), and open the new repo in Claude Code, Codex, Gemini CLI or Cursor.
+1. **Fork or clone** this repo (`git clone https://github.com/navidshad/ai-council-template.git my-council`), and open it in Claude Code, Codex, Gemini CLI or Cursor.
 2. **Run setup.** Ask your agent to "set up the council" (or just start a council request — it will offer). It interviews you, fills in your product facts and the `docs/` skeleton, and commits. See `SETUP.md`.
 3. Open `AGENTS.md` and try a request: ask the council a small strategic question, or draft a PR/FAQ from `templates/pr-faq-template.md`.
 4. Optional: connect your analytics, payments and tracker to your agent, and list your code repos during setup.
